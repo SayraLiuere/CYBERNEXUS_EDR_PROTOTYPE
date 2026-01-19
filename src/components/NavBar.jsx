@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import './NavBar.css'
+import { DETECTORS, DETECTOR_LABELS } from '../utils/detectors'
 
-const NavBar = () => {
+const NavBar = ({ detector, setDetector }) => {
   const location = useLocation()
 
   const isActive = (path) => location.pathname === path
@@ -39,6 +40,18 @@ const NavBar = () => {
           >
             Reports
           </Link>
+        </div>
+        <div className="navbar-detector">
+          <div className="detector-label">Detector</div>
+          <select
+            className="detector-select"
+            value={detector}
+            onChange={(e) => setDetector(e.target.value)}
+            aria-label="Select detection engine"
+          >
+            <option value={DETECTORS.LegacyAV}>{DETECTOR_LABELS[DETECTORS.LegacyAV]}</option>
+            <option value={DETECTORS.CyberNexus}>{DETECTOR_LABELS[DETECTORS.CyberNexus]}</option>
+          </select>
         </div>
       </div>
     </nav>

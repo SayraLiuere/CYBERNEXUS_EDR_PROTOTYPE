@@ -6,7 +6,8 @@
     "severity": "High",
     "type": "Ransomware behavior",
     "status": "Open",
-    "endpointId": "1"
+    "endpointId": "1",
+    "detectableBy": ["CyberNexus"]
   },
   {
     "id": "2",
@@ -15,7 +16,8 @@
     "severity": "Medium",
     "type": "Unusual login",
     "status": "Open",
-    "endpointId": "2"
+    "endpointId": "2",
+    "detectableBy": ["CyberNexus"]
   },
   {
     "id": "3",
@@ -25,7 +27,8 @@
     "type": "Suspicious activity",
     "status": "Resolved",
     "endpointId": "5",
-    "endpointIsolated": true
+    "endpointIsolated": true,
+    "detectableBy": ["LegacyAV", "CyberNexus"]
   },
   {
     "id": "4",
@@ -34,7 +37,8 @@
     "severity": "Low",
     "type": "Configuration change",
     "status": "Closed – False positive",
-    "endpointId": "3"
+    "endpointId": "3",
+    "detectableBy": ["LegacyAV", "CyberNexus"]
   },
   {
     "id": "5",
@@ -44,6 +48,7 @@
     "type": "File encryption attempt",
     "status": "Resolved",
     "endpointId": "1",
-    "autoRecovered": true
+    "autoRecovered": true,
+    "detectableBy": ["CyberNexus"]
   }
 ]

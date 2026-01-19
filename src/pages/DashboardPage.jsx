@@ -6,8 +6,9 @@ import Sidebar from '../components/Sidebar'
 import endpointsData from '../data/endpoints.json'
 import alertsData from '../data/alerts.json'
 import './DashboardPage.css'
+import { DETECTORS, isDetectableBy } from '../utils/detectors'
 
-const DashboardPage = () => {
+const DashboardPage = ({ detector }) => {
   const navigate = useNavigate()
   const [endpoints, setEndpoints] = useState([])
   const [alerts, setAlerts] = useState([])
@@ -17,9 +18,12 @@ const DashboardPage = () => {
     setAlerts(alertsData.filter(a => a.status === 'Open'))
   }, [])
 
+  const visibleOpenAlerts =
+    detector === DETECTORS.CyberNexus ? alerts : alerts.filter((a) => isDetectableBy(a, detector))
+
   const protectedEndpoints = endpoints.length
-  const openAlerts = alerts.length
-  const ransomwareBlocked = alerts.filter(a => a.type.includes('Ransomware')).length
+  const openAlerts = visibleOpenAlerts.length
+  const ransomwareBlocked = visibleOpenAlerts.filter(a => a.type.includes('Ransomware')).length
   const avgCpuUsage = endpoints.reduce((sum, e) => sum + e.cpuUsage, 0) / endpoints.length
 
   const handleViewAlert = (alertId) => {
@@ -28,11 +32,18 @@ const DashboardPage = () => {
 
   const pilotEndpoints = endpoints.filter(e => e.phase === 'Pilot').length
   const criticalEndpoints = endpoints.filter(e => e.tags.includes('Critical asset')).length
+  const missedByLegacy =
+    alerts.filter((a) => a.status === 'Open').filter((a) => !isDetectableBy(a, DETECTORS.LegacyAV)).length
 
   return (
     <div className="dashboard-page">
       <div className="dashboard-header">
-        <h1 className="page-title">Dashboard</h1>
+        <h1 className="page-title">
+          Dashboard
+          {detector === DETECTORS.LegacyAV && missedByLegacy > 0 && (
+            <span>{`Legacy AV misses ${missedByLegacy} active threat(s)`}</span>
+          )}
+        </h1>
       </div>
       
       <div className="dashboard-content">
@@ -63,7 +74,7 @@ const DashboardPage = () => {
           <div className="alerts-section">
             <h2 className="section-title">Recent Alerts</h2>
             <div className="alerts-list">
-              {alerts.slice(0, 5).map(alert => (
+              {visibleOpenAlerts.slice(0, 5).map(alert => (
                 <div key={alert.id} className="alert-item">
                   <div className="alert-info">
                     <SeverityBadge severity={alert.severity} />
@@ -79,7 +90,7 @@ const DashboardPage = () => {
                   </button>
                 </div>
               ))}
-              {alerts.length === 0 && (
+              {visibleOpenAlerts.length === 0 && (
                 <div className="no-alerts">No open alerts</div>
               )}
             </div>

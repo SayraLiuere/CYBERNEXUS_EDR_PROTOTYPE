@@ -3,8 +3,9 @@ import SeverityBadge from '../components/SeverityBadge'
 import alertsData from '../data/alerts.json'
 import endpointsData from '../data/endpoints.json'
 import './AlertsPage.css'
+import { DETECTORS, isDetectableBy } from '../utils/detectors'
 
-const AlertsPage = () => {
+const AlertsPage = ({ detector }) => {
   const [alerts, setAlerts] = useState([])
   const [filter, setFilter] = useState('All')
   const [showConfirmation, setShowConfirmation] = useState(null)
@@ -14,9 +15,14 @@ const AlertsPage = () => {
     setAlerts(alertsData)
   }, [])
 
-  const filteredAlerts = filter === 'All' 
-    ? alerts 
-    : alerts.filter(a => a.severity.toLowerCase() === filter.toLowerCase())
+  const visibleAlerts =
+    detector === DETECTORS.CyberNexus ? alerts : alerts.filter((a) => isDetectableBy(a, detector))
+
+  const filteredAlerts = filter === 'All'
+    ? visibleAlerts
+    : visibleAlerts.filter(a => a.severity.toLowerCase() === filter.toLowerCase())
+
+  const missedCount = alerts.filter((a) => !isDetectableBy(a, DETECTORS.LegacyAV)).length
 
   const handleAutoRecover = (alert) => {
     setShowConfirmation({
@@ -61,7 +67,12 @@ const AlertsPage = () => {
 
   return (
     <div className="alerts-page">
-      <h1 className="page-title">Alerts & Response</h1>
+      <h1 className="page-title">
+        Alerts & Response
+        {detector === DETECTORS.LegacyAV && missedCount > 0 && (
+          <span>{`Legacy AV would miss ${missedCount} item(s) in this dataset`}</span>
+        )}
+      </h1>
 
       <div className="filter-buttons">
         {['All', 'High', 'Medium', 'Low'].map(severity => (
@@ -74,6 +85,12 @@ const AlertsPage = () => {
           </button>
         ))}
       </div>
+
+      {detector === DETECTORS.LegacyAV && missedCount > 0 && (
+        <div className="confirmation-message">
+          Legacy AV view is showing only signature-detectable threats. Switch to CyberNexus EDR to see behavioral detections like ransomware behavior and unusual logins.
+        </div>
+      )}
 
       {showConfirmation && (
         <div className="confirmation-message">
