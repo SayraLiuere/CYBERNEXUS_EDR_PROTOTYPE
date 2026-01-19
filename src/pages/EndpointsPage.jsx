@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 import Modal from '../components/Modal'
 import endpointsData from '../data/endpoints.json'
 import alertsData from '../data/alerts.json'
+import responseActionsData from '../data/responseActions.json'
 import { calculateRiskScore, getRiskBadgeClass } from '../utils/riskScore'
+import { buildAttackTimeline } from '../utils/attackTimeline'
 import './EndpointsPage.css'
 
 const EndpointsPage = ({ detector }) => {
@@ -10,6 +12,7 @@ const EndpointsPage = ({ detector }) => {
   const [selectedEndpoint, setSelectedEndpoint] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [alerts] = useState(alertsData)
+  const [responseActions] = useState(responseActionsData)
   const [phaseFilter, setPhaseFilter] = useState('All')
   const [statusFilter, setStatusFilter] = useState('All')
 
@@ -213,6 +216,38 @@ const EndpointsPage = ({ detector }) => {
                 ))}
               </div>
             </div>
+
+            {selectedEndpoint.status === 'Under attack' && (
+              <div className="attack-timeline">
+                <h4>Attack Timeline</h4>
+                <div className="timeline-container">
+                  {buildAttackTimeline(selectedEndpoint, alerts, responseActions).map((item, idx) => (
+                    <div key={idx} className="timeline-item">
+                      <div className="timeline-marker" data-type={item.type}>
+                        <span className="timeline-icon">{item.icon}</span>
+                      </div>
+                      <div className="timeline-content">
+                        <div className="timeline-header">
+                          <span className="timeline-time">{item.time}</span>
+                          {item.severity && (
+                            <span className={`timeline-severity severity-${item.severity.toLowerCase()}`}>
+                              {item.severity}
+                            </span>
+                          )}
+                        </div>
+                        <div className="timeline-event">{item.event}</div>
+                        {item.description && (
+                          <div className="timeline-description">{item.description}</div>
+                        )}
+                        {item.status && (
+                          <div className="timeline-status">Status: {item.status}</div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className="recent-events">
               <h4>Recent Events</h4>

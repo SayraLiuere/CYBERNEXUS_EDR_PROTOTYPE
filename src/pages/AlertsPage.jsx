@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import SeverityBadge from '../components/SeverityBadge'
+import AlertSidePanel from '../components/AlertSidePanel'
 import alertsData from '../data/alerts.json'
 import endpointsData from '../data/endpoints.json'
 import './AlertsPage.css'
@@ -10,6 +11,8 @@ const AlertsPage = ({ detector }) => {
   const [filter, setFilter] = useState('All')
   const [showConfirmation, setShowConfirmation] = useState(null)
   const [tuningLog, setTuningLog] = useState([])
+  const [selectedAlert, setSelectedAlert] = useState(null)
+  const [isSidePanelOpen, setIsSidePanelOpen] = useState(false)
 
   useEffect(() => {
     setAlerts(alertsData)
@@ -118,7 +121,14 @@ const AlertsPage = ({ detector }) => {
           </thead>
           <tbody>
             {filteredAlerts.map(alert => (
-              <tr key={alert.id}>
+              <tr 
+                key={alert.id}
+                className="alert-row-clickable"
+                onClick={() => {
+                  setSelectedAlert(alert)
+                  setIsSidePanelOpen(true)
+                }}
+              >
                 <td>{alert.time}</td>
                 <td className="endpoint-name">{alert.endpoint}</td>
                 <td>
@@ -139,19 +149,28 @@ const AlertsPage = ({ detector }) => {
                       <>
                         <button
                           className="btn-action btn-auto-recover"
-                          onClick={() => handleAutoRecover(alert)}
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleAutoRecover(alert)
+                          }}
                         >
                           Auto-recover
                         </button>
                         <button
                           className="btn-action btn-isolate"
-                          onClick={() => handleIsolate(alert)}
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleIsolate(alert)
+                          }}
                         >
                           Isolate
                         </button>
                         <button
                           className="btn-action btn-false-positive"
-                          onClick={() => handleFalsePositive(alert)}
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleFalsePositive(alert)
+                          }}
                         >
                           False positive
                         </button>
@@ -183,6 +202,12 @@ const AlertsPage = ({ detector }) => {
           </div>
         </div>
       )}
+
+      <AlertSidePanel
+        alert={selectedAlert}
+        isOpen={isSidePanelOpen}
+        onClose={() => setIsSidePanelOpen(false)}
+      />
     </div>
   )
 }
