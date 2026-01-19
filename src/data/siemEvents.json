@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1",
+    "endpoint": "FIN-PC-01",
+    "event": "Ransomware blocked",
+    "timestamp": "10:21",
+    "sentVia": "API"
+  },
+  {
+    "id": "2",
+    "endpoint": "HR-LAPTOP-02",
+    "event": "Suspicious login",
+    "timestamp": "09:15",
+    "sentVia": "API"
+  },
+  {
+    "id": "3",
+    "endpoint": "HR-LAPTOP-01",
+    "event": "Endpoint isolated",
+    "timestamp": "09:30",
+    "sentVia": "API"
+  },
+  {
+    "id": "4",
+    "endpoint": "FIN-PC-01",
+    "event": "Auto-recovery completed",
+    "timestamp": "10:25",
+    "sentVia": "API"
+  }
+]

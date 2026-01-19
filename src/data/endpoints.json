@@ -1,0 +1,163 @@
+[
+  {
+    "id": "1",
+    "name": "FIN-PC-01",
+    "department": "Finance",
+    "phase": "Critical",
+    "status": "Under attack",
+    "cpuUsage": 0.8,
+    "ramUsage": 45,
+    "tags": ["Critical asset", "Phase 2"],
+    "recentEvents": [
+      "Ransomware behavior detected - 10:21",
+      "File encryption attempt blocked - 10:20",
+      "Suspicious process spawned - 10:19"
+    ]
+  },
+  {
+    "id": "2",
+    "name": "HR-LAPTOP-02",
+    "department": "HR",
+    "phase": "Pilot",
+    "status": "Healthy",
+    "cpuUsage": 0.5,
+    "ramUsage": 32,
+    "tags": ["Phase 1"],
+    "recentEvents": [
+      "Unusual login detected - 09:15",
+      "Normal operation - 08:00"
+    ]
+  },
+  {
+    "id": "3",
+    "name": "IT-SERVER-01",
+    "department": "IT",
+    "phase": "Full deployment",
+    "status": "Healthy",
+    "cpuUsage": 0.6,
+    "ramUsage": 58,
+    "tags": ["Critical asset", "Phase 3"],
+    "recentEvents": [
+      "Normal operation - 11:00",
+      "Security scan completed - 10:30"
+    ]
+  },
+  {
+    "id": "4",
+    "name": "FIN-PC-02",
+    "department": "Finance",
+    "phase": "Critical",
+    "status": "Healthy",
+    "cpuUsage": 0.4,
+    "ramUsage": 28,
+    "tags": ["Phase 2"],
+    "recentEvents": [
+      "Normal operation - 11:15"
+    ]
+  },
+  {
+    "id": "5",
+    "name": "HR-LAPTOP-01",
+    "department": "HR",
+    "phase": "Pilot",
+    "status": "Isolated",
+    "cpuUsage": 0.2,
+    "ramUsage": 15,
+    "tags": ["Phase 1"],
+    "recentEvents": [
+      "Endpoint isolated - 09:30",
+      "Suspicious activity detected - 09:25"
+    ]
+  },
+  {
+    "id": "6",
+    "name": "IT-WORKSTATION-03",
+    "department": "IT",
+    "phase": "Full deployment",
+    "status": "Healthy",
+    "cpuUsage": 0.7,
+    "ramUsage": 42,
+    "tags": ["Phase 3"],
+    "recentEvents": [
+      "Normal operation - 11:20"
+    ]
+  },
+  {
+    "id": "7",
+    "name": "FIN-PC-03",
+    "department": "Finance",
+    "phase": "Critical",
+    "status": "Healthy",
+    "cpuUsage": 0.5,
+    "ramUsage": 35,
+    "tags": ["Phase 2"],
+    "recentEvents": [
+      "Normal operation - 11:10"
+    ]
+  },
+  {
+    "id": "8",
+    "name": "HR-LAPTOP-03",
+    "department": "HR",
+    "phase": "Pilot",
+    "status": "Healthy",
+    "cpuUsage": 0.3,
+    "ramUsage": 25,
+    "tags": ["Phase 1"],
+    "recentEvents": [
+      "Normal operation - 10:45"
+    ]
+  },
+  {
+    "id": "9",
+    "name": "IT-SERVER-02",
+    "department": "IT",
+    "phase": "Full deployment",
+    "status": "Healthy",
+    "cpuUsage": 0.6,
+    "ramUsage": 52,
+    "tags": ["Critical asset", "Phase 3"],
+    "recentEvents": [
+      "Normal operation - 11:05"
+    ]
+  },
+  {
+    "id": "10",
+    "name": "FIN-PC-04",
+    "department": "Finance",
+    "phase": "Critical",
+    "status": "Healthy",
+    "cpuUsage": 0.4,
+    "ramUsage": 30,
+    "tags": ["Phase 2"],
+    "recentEvents": [
+      "Normal operation - 10:50"
+    ]
+  },
+  {
+    "id": "11",
+    "name": "IT-WORKSTATION-01",
+    "department": "IT",
+    "phase": "Full deployment",
+    "status": "Healthy",
+    "cpuUsage": 0.5,
+    "ramUsage": 38,
+    "tags": ["Phase 3"],
+    "recentEvents": [
+      "Normal operation - 11:00"
+    ]
+  },
+  {
+    "id": "12",
+    "name": "IT-WORKSTATION-02",
+    "department": "IT",
+    "phase": "Full deployment",
+    "status": "Healthy",
+    "cpuUsage": 0.6,
+    "ramUsage": 40,
+    "tags": ["Phase 3"],
+    "recentEvents": [
+      "Normal operation - 10:55"
+    ]
+  }
+]

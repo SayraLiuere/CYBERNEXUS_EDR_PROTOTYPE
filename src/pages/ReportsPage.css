@@ -1,0 +1,177 @@
+.reports-page {
+  width: 100%;
+}
+
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 24px;
+}
+
+.siem-section,
+.pdpa-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.siem-card,
+.pdpa-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.siem-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.siem-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0;
+}
+
+.event-count {
+  padding: 4px 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.siem-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.siem-event-item {
+  padding: 16px;
+  background: #f7fafc;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.event-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.event-endpoint {
+  font-weight: 600;
+  color: #667eea;
+}
+
+.event-separator {
+  color: #a0aec0;
+}
+
+.event-type {
+  color: #4a5568;
+}
+
+.event-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #718096;
+}
+
+.event-time {
+  font-weight: 500;
+}
+
+.event-method {
+  padding: 2px 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+}
+
+.no-events {
+  text-align: center;
+  padding: 32px;
+  color: #718096;
+  font-style: italic;
+}
+
+.pdpa-description {
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.btn-generate-report {
+  width: 100%;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.btn-generate-report:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.pdpa-report {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.report-section {
+  padding: 20px;
+  background: #f7fafc;
+  border-radius: 8px;
+}
+
+.report-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 12px;
+}
+
+.report-section p {
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.report-section ul {
+  margin-left: 20px;
+  color: #4a5568;
+  line-height: 1.8;
+}
+
+.report-section li {
+  margin-bottom: 8px;
+}
+
+.report-section strong {
+  color: #1a202c;
+}
+
+.report-footer {
+  padding-top: 20px;
+  border-top: 2px solid #e2e8f0;
+  color: #718096;
+  font-size: 14px;
+}
+
+.report-footer p {
+  margin: 4px 0;
+}
