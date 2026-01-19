@@ -1,8 +1,9 @@
 .stat-card {
-  background: white;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.16), rgba(15, 23, 42, 0.96));
+  border-radius: var(--radius-lg);
+  padding: 22px 20px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  box-shadow: var(--shadow-soft);
   display: flex;
   align-items: center;
   gap: 16px;
@@ -16,14 +17,15 @@
 
 .stat-icon {
   font-size: 32px;
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 12px;
-  color: white;
+  background: radial-gradient(circle at top, #4f46e5 0%, #22c55e 90%);
+  border-radius: 50%;
+  color: #f9fafb;
+  box-shadow: 0 10px 30px rgba(79, 70, 229, 0.6);
 }
 
 .stat-content {
@@ -31,14 +33,16 @@
 }
 
 .stat-value {
-  font-size: 32px;
-  font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 4px;
+  font-size: 26px;
+  font-weight: 650;
+  color: #e5e7eb;
+  margin-bottom: 2px;
 }
 
 .stat-title {
-  font-size: 14px;
-  color: #718096;
+  font-size: 13px;
+  color: var(--text-soft);
   font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }

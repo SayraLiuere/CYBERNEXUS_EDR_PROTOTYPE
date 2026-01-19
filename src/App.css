@@ -4,14 +4,30 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-body: #0f172a;
+  --bg-elevated: #0b1120;
+  --bg-card: #020617;
+  --border-subtle: #1e293b;
+  --accent-primary: #4f46e5;
+  --accent-primary-soft: rgba(79, 70, 229, 0.12);
+  --accent-primary-strong: rgba(79, 70, 229, 0.35);
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --text-soft: #6b7280;
+  --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.9);
+  --radius-lg: 16px;
+  --radius-md: 12px;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f7fafc;
-  color: #1a202c;
+  background: radial-gradient(circle at top, #1d2438 0, #020617 45%, #000 100%);
+  color: var(--text-main);
 }
 
 .app {
@@ -25,7 +41,7 @@ body {
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: 32px 24px 40px;
 }
 
 button {
@@ -39,4 +55,17 @@ button {
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+.page-title span {
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--text-soft);
+  margin-left: 12px;
 }
