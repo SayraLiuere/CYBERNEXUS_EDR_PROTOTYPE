@@ -1,8 +1,8 @@
-# GitHub Pages Deployment Guide
+# GitHub Pages Deployment Guide or fix
 
 ## Current Status
 
-Your site should be live at: **https://sayraliuere.github.io/CYBERNEXUS_EDR_PROTOTYPE/**
+ site should be live at: **https://sayraliuere.github.io/CYBERNEXUS_EDR_PROTOTYPE/**
 
 ## Troubleshooting Blank Page
 
