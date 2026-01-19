@@ -23,6 +23,9 @@ const AlertsPage = ({ detector }) => {
     : visibleAlerts.filter(a => a.severity.toLowerCase() === filter.toLowerCase())
 
   const missedCount = alerts.filter((a) => !isDetectableBy(a, DETECTORS.LegacyAV)).length
+  const legacyVisibleCount = alerts.filter((a) => isDetectableBy(a, DETECTORS.LegacyAV)).length
+  const extraDetectedByCnx =
+    detector === DETECTORS.CyberNexus ? Math.max(0, visibleAlerts.length - legacyVisibleCount) : 0
 
   const handleAutoRecover = (alert) => {
     setShowConfirmation({
@@ -71,6 +74,9 @@ const AlertsPage = ({ detector }) => {
         Alerts & Response
         {detector === DETECTORS.LegacyAV && missedCount > 0 && (
           <span>{`Legacy AV would miss ${missedCount} item(s) in this dataset`}</span>
+        )}
+        {detector === DETECTORS.CyberNexus && extraDetectedByCnx > 0 && (
+          <span>{`CyberNexus surfaces ${extraDetectedByCnx} more threat(s)`}</span>
         )}
       </h1>
 

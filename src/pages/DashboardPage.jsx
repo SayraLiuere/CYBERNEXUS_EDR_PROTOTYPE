@@ -34,6 +34,10 @@ const DashboardPage = ({ detector }) => {
   const criticalEndpoints = endpoints.filter(e => e.tags.includes('Critical asset')).length
   const missedByLegacy =
     alerts.filter((a) => a.status === 'Open').filter((a) => !isDetectableBy(a, DETECTORS.LegacyAV)).length
+  const legacyVisible =
+    alerts.filter((a) => a.status === 'Open').filter((a) => isDetectableBy(a, DETECTORS.LegacyAV))
+  const extraDetectedByCnx =
+    detector === DETECTORS.CyberNexus ? Math.max(0, visibleOpenAlerts.length - legacyVisible.length) : 0
 
   return (
     <div className="dashboard-page">
@@ -44,6 +48,11 @@ const DashboardPage = ({ detector }) => {
             <span>{`Legacy AV misses ${missedByLegacy} active threat(s)`}</span>
           )}
         </h1>
+        {detector === DETECTORS.CyberNexus && extraDetectedByCnx > 0 && (
+          <p className="page-subtitle">
+            CyberNexus EDR reveals <strong>{extraDetectedByCnx}</strong> additional behavioral threat(s) compared to Legacy AV.
+          </p>
+        )}
       </div>
       
       <div className="dashboard-content">

@@ -10,6 +10,8 @@ const EndpointsPage = ({ detector }) => {
   const [selectedEndpoint, setSelectedEndpoint] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [alerts] = useState(alertsData)
+  const [phaseFilter, setPhaseFilter] = useState('All')
+  const [statusFilter, setStatusFilter] = useState('All')
 
   useEffect(() => {
     setEndpoints(endpointsData)
@@ -56,10 +58,50 @@ const EndpointsPage = ({ detector }) => {
     return ''
   }
 
+  const filteredEndpoints = endpoints.filter((e) => {
+    const phaseOk = phaseFilter === 'All' || e.phase === phaseFilter
+    const statusOk = statusFilter === 'All' || e.status === statusFilter
+    return phaseOk && statusOk
+  })
+
+  const buildCpuTrend = (cpuBase) => {
+    const base = cpuBase || 0.5
+    const deltas = [-0.2, -0.1, 0, 0.05, 0.1, -0.05]
+    return deltas.map((d) => Math.max(0.1, Math.min(1, base + d)))
+  }
+
   return (
     <div className="endpoints-page">
-      <h1 className="page-title">Endpoints</h1>
-      
+      <div className="endpoints-header-row">
+        <h1 className="page-title">Endpoints</h1>
+        <div className="endpoints-filters">
+          <div className="endpoint-filter-group">
+            <span className="filter-label">Phase</span>
+            {['All', 'Pilot', 'Critical', 'Full deployment'].map((p) => (
+              <button
+                key={p}
+                className={`endpoint-filter-btn ${phaseFilter === p ? 'active' : ''}`}
+                onClick={() => setPhaseFilter(p)}
+              >
+                {p}
+              </button>
+            ))}
+          </div>
+          <div className="endpoint-filter-group">
+            <span className="filter-label">Status</span>
+            {['All', 'Healthy', 'Under attack', 'Isolated'].map((s) => (
+              <button
+                key={s}
+                className={`endpoint-filter-btn ${statusFilter === s ? 'active' : ''}`}
+                onClick={() => setStatusFilter(s)}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div className="table-container">
         <table className="endpoints-table">
           <thead>
@@ -74,7 +116,7 @@ const EndpointsPage = ({ detector }) => {
             </tr>
           </thead>
           <tbody>
-            {endpoints.map(endpoint => {
+            {filteredEndpoints.map(endpoint => {
               const riskScore = calculateRiskScore(endpoint, alerts)
               const riskClass = getRiskBadgeClass(riskScore)
               return (
@@ -155,6 +197,20 @@ const EndpointsPage = ({ detector }) => {
               <div className="info-row">
                 <span className="info-label">RAM Usage:</span>
                 <span>{selectedEndpoint.ramUsage}%</span>
+              </div>
+            </div>
+
+            <div className="health-trend">
+              <h4>CPU Health (last 6 checks)</h4>
+              <div className="health-bars">
+                {buildCpuTrend(selectedEndpoint.cpuUsage).map((v, idx) => (
+                  <div
+                    key={idx}
+                    className="health-bar"
+                    style={{ height: `${v * 60}px` }}
+                    title={`${(v * 100).toFixed(1)}%`}
+                  />
+                ))}
               </div>
             </div>
 
