@@ -40,6 +40,12 @@ const NavBar = ({ detector, setDetector }) => {
           >
             Reports
           </Link>
+          <Link 
+            to="/response" 
+            className={`nav-link ${isActive('/response') ? 'active' : ''}`}
+          >
+            Response
+          </Link>
         </div>
         <div className="navbar-detector">
           <div className="detector-label">Detector</div>

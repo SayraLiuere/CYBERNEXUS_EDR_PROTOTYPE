@@ -1,0 +1,90 @@
+[
+  {
+    "id": "1",
+    "timestamp": "10:22:15",
+    "endpoint": "FIN-PC-01",
+    "action": "Auto-recovery",
+    "status": "Success",
+    "description": "Files restored from snapshot. 47 files recovered, user notified via email.",
+    "triggeredBy": "Ransomware behavior detected",
+    "severity": "High",
+    "icon": "🔄"
+  },
+  {
+    "id": "2",
+    "timestamp": "10:21:30",
+    "endpoint": "FIN-PC-01",
+    "action": "Process terminated",
+    "status": "Success",
+    "description": "Malicious process 'encrypt.exe' terminated. Process ID: 12345",
+    "triggeredBy": "File encryption attempt detected",
+    "severity": "High",
+    "icon": "🛑"
+  },
+  {
+    "id": "3",
+    "timestamp": "10:20:45",
+    "endpoint": "FIN-PC-01",
+    "action": "Network isolation",
+    "status": "Success",
+    "description": "Endpoint isolated from network to prevent lateral movement. Firewall rules updated.",
+    "triggeredBy": "Suspicious process spawned",
+    "severity": "High",
+    "icon": "🔒"
+  },
+  {
+    "id": "4",
+    "timestamp": "09:30:20",
+    "endpoint": "HR-LAPTOP-01",
+    "action": "Endpoint isolation",
+    "status": "Success",
+    "description": "Endpoint isolated from network. All network connections blocked.",
+    "triggeredBy": "Suspicious activity detected",
+    "severity": "High",
+    "icon": "🔒"
+  },
+  {
+    "id": "5",
+    "timestamp": "09:16:05",
+    "endpoint": "HR-LAPTOP-02",
+    "action": "Login blocked",
+    "status": "Success",
+    "description": "Unusual login attempt from IP 192.168.1.100 blocked. MFA challenge sent.",
+    "triggeredBy": "Unusual login detected",
+    "severity": "Medium",
+    "icon": "🚫"
+  },
+  {
+    "id": "6",
+    "timestamp": "10:19:12",
+    "endpoint": "FIN-PC-01",
+    "action": "File quarantine",
+    "status": "Success",
+    "description": "3 suspicious files quarantined: 'malware.exe', 'payload.dll', 'script.ps1'",
+    "triggeredBy": "Suspicious process spawned",
+    "severity": "High",
+    "icon": "📦"
+  },
+  {
+    "id": "7",
+    "timestamp": "08:50:30",
+    "endpoint": "IT-SERVER-01",
+    "action": "Alert dismissed",
+    "status": "Success",
+    "description": "Configuration change marked as false positive. Added to whitelist.",
+    "triggeredBy": "Configuration change detected",
+    "severity": "Low",
+    "icon": "✅"
+  },
+  {
+    "id": "8",
+    "timestamp": "10:21:00",
+    "endpoint": "FIN-PC-01",
+    "action": "Behavioral analysis",
+    "status": "Success",
+    "description": "Deep behavioral analysis completed. Threat signature: Ransomware.WannaCry variant",
+    "triggeredBy": "Ransomware behavior detected",
+    "severity": "High",
+    "icon": "🔍"
+  }
+]

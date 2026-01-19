@@ -5,6 +5,7 @@ import DashboardPage from './pages/DashboardPage'
 import EndpointsPage from './pages/EndpointsPage'
 import AlertsPage from './pages/AlertsPage'
 import ReportsPage from './pages/ReportsPage'
+import AutomatedResponsePage from './pages/AutomatedResponsePage'
 import './App.css'
 import { DETECTORS } from './utils/detectors'
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="/endpoints" element={<EndpointsPage detector={detector} />} />
             <Route path="/alerts" element={<AlertsPage detector={detector} />} />
             <Route path="/reports" element={<ReportsPage detector={detector} />} />
+            <Route path="/response" element={<AutomatedResponsePage />} />
           </Routes>
         </main>
       </div>

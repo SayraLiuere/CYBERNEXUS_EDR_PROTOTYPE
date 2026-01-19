@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import Modal from '../components/Modal'
 import endpointsData from '../data/endpoints.json'
+import alertsData from '../data/alerts.json'
+import { calculateRiskScore, getRiskBadgeClass } from '../utils/riskScore'
 import './EndpointsPage.css'
 
-const EndpointsPage = () => {
+const EndpointsPage = ({ detector }) => {
   const [endpoints, setEndpoints] = useState([])
   const [selectedEndpoint, setSelectedEndpoint] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [alerts] = useState(alertsData)
 
   useEffect(() => {
     setEndpoints(endpointsData)
@@ -64,34 +67,44 @@ const EndpointsPage = () => {
               <th>Name</th>
               <th>Department</th>
               <th>Phase</th>
+              <th>Risk Score</th>
               <th>Status</th>
               <th>CPU Usage (%)</th>
               <th>RAM Usage (%)</th>
             </tr>
           </thead>
           <tbody>
-            {endpoints.map(endpoint => (
-              <tr 
-                key={endpoint.id} 
-                className="table-row"
-                onClick={() => handleRowClick(endpoint)}
-              >
-                <td className="endpoint-name">{endpoint.name}</td>
-                <td>{endpoint.department}</td>
-                <td>
-                  <span className={`phase-badge ${getPhaseClass(endpoint.phase)}`}>
-                    {endpoint.phase}
-                  </span>
-                </td>
-                <td>
-                  <span className={`status-badge ${getStatusClass(endpoint.status)}`}>
-                    {endpoint.status}
-                  </span>
-                </td>
-                <td>{endpoint.cpuUsage}%</td>
-                <td>{endpoint.ramUsage}%</td>
-              </tr>
-            ))}
+            {endpoints.map(endpoint => {
+              const riskScore = calculateRiskScore(endpoint, alerts)
+              const riskClass = getRiskBadgeClass(riskScore)
+              return (
+                <tr 
+                  key={endpoint.id} 
+                  className="table-row"
+                  onClick={() => handleRowClick(endpoint)}
+                >
+                  <td className="endpoint-name">{endpoint.name}</td>
+                  <td>{endpoint.department}</td>
+                  <td>
+                    <span className={`phase-badge ${getPhaseClass(endpoint.phase)}`}>
+                      {endpoint.phase}
+                    </span>
+                  </td>
+                  <td>
+                    <span className={`risk-badge ${riskClass}`}>
+                      {riskScore}
+                    </span>
+                  </td>
+                  <td>
+                    <span className={`status-badge ${getStatusClass(endpoint.status)}`}>
+                      {endpoint.status}
+                    </span>
+                  </td>
+                  <td>{endpoint.cpuUsage}%</td>
+                  <td>{endpoint.ramUsage}%</td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </div>
@@ -121,6 +134,12 @@ const EndpointsPage = () => {
                 <span className="info-label">Phase:</span>
                 <span className={`phase-badge ${getPhaseClass(selectedEndpoint.phase)}`}>
                   {selectedEndpoint.phase}
+                </span>
+              </div>
+              <div className="info-row">
+                <span className="info-label">Risk Score:</span>
+                <span className={`risk-badge ${getRiskBadgeClass(calculateRiskScore(selectedEndpoint, alerts))}`}>
+                  {calculateRiskScore(selectedEndpoint, alerts)}
                 </span>
               </div>
               <div className="info-row">
