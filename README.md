@@ -88,6 +88,25 @@ All data is stored in static JSON files in `src/data/`:
 - `alerts.json`: Alert data
 - `siemEvents.json`: SIEM integration events
 
+## GitHub Pages Deployment
+
+This project is configured for GitHub Pages deployment.
+
+### Automatic Deployment
+
+The repository includes a GitHub Actions workflow that automatically builds and deploys the site when you push to the `main` branch.
+
+### Manual Setup (if needed)
+
+1. Go to your repository Settings → Pages
+2. Under "Source", select "GitHub Actions"
+3. The workflow will automatically build and deploy your site
+
+### Live Site
+
+Once deployed, your site will be available at:
+`https://sayraliuere.github.io/CYBERNEXUS_EDR_PROTOTYPE/`
+
 ## Notes
 
 This is a prototype application with static data. All actions update the UI state only and do not persist between page refreshes.
